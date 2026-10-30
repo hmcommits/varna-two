@@ -27,11 +27,24 @@ interface NewArrivalsProps {
 export function NewArrivals({
   onAddToCart,
   onToggleWishlist,
-  wishlist = [],
+  wishlist: externalWishlist,
 }: NewArrivalsProps) {
   const [activeTab, setActiveTab] = useState("All");
   const [selectedColors, setSelectedColors] = useState<{ [key: string]: number }>({});
+  const [localWishlist, setLocalWishlist] = useState<string[]>(["prod-1"]);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const wishlist = externalWishlist !== undefined ? externalWishlist : localWishlist;
+
+  const handleHeartClick = (productId: string) => {
+    if (onToggleWishlist) {
+      onToggleWishlist(productId);
+    } else {
+      setLocalWishlist((prev) =>
+        prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]
+      );
+    }
+  };
 
   const tabs = ["All", "Men", "Women", "T-Shirts", "Shirts", "Jeans"];
 
@@ -196,17 +209,22 @@ export function NewArrivals({
                 >
                   {/* Image & Action Overlays */}
                   <div className="relative aspect-square w-full rounded-lg sm:rounded-xl overflow-hidden bg-[#F2EDE4] mb-2 sm:mb-2.5">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 640px) 175px, (max-width: 1024px) 240px, 260px"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <Link
+                      href={`/product/${product.id}`}
+                      className="block w-full h-full relative"
+                    >
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 640px) 175px, (max-width: 1024px) 240px, 260px"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </Link>
 
                     {/* Wishlist Heart Icon */}
                     <button
-                      onClick={() => onToggleWishlist?.(product.id)}
+                      onClick={() => handleHeartClick(product.id)}
                       aria-label="Save to Wishlist"
                       className="absolute top-2 right-2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#1E1B18] hover:text-[#D9603B] shadow-xs transition-transform active:scale-90 cursor-pointer z-10"
                     >
@@ -241,9 +259,11 @@ export function NewArrivals({
                   {/* Product Details */}
                   <div className="space-y-1 flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-xs sm:text-[13px] font-semibold text-[#1C1917] truncate hover:text-[#D9603B] transition-colors">
-                        {product.name}
-                      </h3>
+                      <Link href={`/product/${product.id}`} className="block">
+                        <h3 className="text-xs sm:text-[13px] font-semibold text-[#1C1917] truncate hover:text-[#D9603B] transition-colors cursor-pointer">
+                          {product.name}
+                        </h3>
+                      </Link>
 
                       {/* Pricing */}
                       <div className="flex items-center gap-1.5 mt-0.5">

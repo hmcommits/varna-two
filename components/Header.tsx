@@ -6,18 +6,10 @@ import Link from "next/link";
 import { Search, Menu, X, MessageCircle } from "lucide-react";
 
 interface HeaderProps {
-  cartCount?: number;
-  wishlistCount?: number;
-  onOpenCart?: () => void;
-  onOpenWishlist?: () => void;
+  className?: string;
 }
 
-export function Header({
-  cartCount = 0,
-  wishlistCount = 0,
-  onOpenCart,
-  onOpenWishlist,
-}: HeaderProps) {
+export function Header({ className = "" }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
