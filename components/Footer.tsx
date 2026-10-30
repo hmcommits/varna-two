@@ -3,8 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
-import { InstagramIcon, FacebookIcon, TwitterIcon, YoutubeIcon } from "./SocialIcons";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   const whatsappUrl = "https://wa.me/916363145972?text=Hi%20Varna!%20I'm%20reaching%20out%20from%20your%20website.";
@@ -61,46 +60,6 @@ export function Footer() {
                   />
                 </div>
                 <span>WhatsApp: +91 63631 45972</span>
-              </a>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 pt-2">
-              <a
-                href="https://instagram.com"
-                aria-label="Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#25221F] hover:bg-[#E06A3B] text-white flex items-center justify-center transition-colors"
-              >
-                <InstagramIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://facebook.com"
-                aria-label="Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#25221F] hover:bg-[#E06A3B] text-white flex items-center justify-center transition-colors"
-              >
-                <FacebookIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://twitter.com"
-                aria-label="Twitter"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#25221F] hover:bg-[#E06A3B] text-white flex items-center justify-center transition-colors"
-              >
-                <TwitterIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="https://youtube.com"
-                aria-label="YouTube"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#25221F] hover:bg-[#E06A3B] text-white flex items-center justify-center transition-colors"
-              >
-                <YoutubeIcon className="w-4 h-4" />
               </a>
             </div>
           </div>
