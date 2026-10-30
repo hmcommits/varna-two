@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, Cambria, serif;
+  --font-handwriting: var(--font-handwriting), "Caveat", cursive;
+  
+  --color-varna-cream: #FAF7F2;
+  --color-varna-dark: #1A1816;
+  --color-varna-terracotta: #D9603B;
+  --color-varna-terracotta-hover: #C55330;
+  --color-varna-accent-light: #FBEFE9;
+  --color-varna-border: #E8E2D8;
+  --color-varna-muted: #736E68;
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  .font-handwriting {
+    font-family: var(--font-handwriting);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes wa-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.45);
+  }
+  50% {
+    box-shadow: 0 6px 32px rgba(37, 211, 102, 0.8), 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-wa-glow {
+  animation: wa-glow 2.4s ease-in-out infinite;
+}
+
+/* Eliminate horizontal scroll and viewport spill */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #D9603B;
+  color: #ffffff;
+}
